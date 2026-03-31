@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const blogs = [
   {
@@ -8,6 +9,7 @@ const blogs = [
     category: "Content Marketing",
     date: "Mar 25, 2026",
     readTime: "6 min read",
+    slug: "content-strategies-tripled-engagement",
   },
   {
     title: "Amazon A+ Content: The Ultimate Guide to Higher Conversions",
@@ -15,6 +17,7 @@ const blogs = [
     category: "Marketplace",
     date: "Mar 18, 2026",
     readTime: "8 min read",
+    slug: "amazon-a-plus-content-guide",
   },
   {
     title: "Meta Ads in 2026: What Changed and How to Adapt Your Strategy",
@@ -22,6 +25,7 @@ const blogs = [
     category: "Paid Ads",
     date: "Mar 10, 2026",
     readTime: "7 min read",
+    slug: "meta-ads-2026-strategy",
   },
   {
     title: "WhatsApp Marketing: How Brands Are Driving 40% Repeat Purchases",
@@ -29,6 +33,7 @@ const blogs = [
     category: "Automation",
     date: "Feb 28, 2026",
     readTime: "5 min read",
+    slug: "whatsapp-marketing-repeat-purchases",
   },
   {
     title: "SEO for E-commerce: A Step-by-Step Technical Audit Checklist",
@@ -36,6 +41,7 @@ const blogs = [
     category: "SEO",
     date: "Feb 20, 2026",
     readTime: "10 min read",
+    slug: "seo-ecommerce-technical-audit",
   },
   {
     title: "Building a Brand Identity from Scratch: The Ecometra360 Framework",
@@ -43,6 +49,7 @@ const blogs = [
     category: "Branding",
     date: "Feb 12, 2026",
     readTime: "9 min read",
+    slug: "brand-identity-framework",
   },
 ];
 
@@ -67,39 +74,43 @@ const BlogSection = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogs.map((blog, i) => (
-            <motion.article
+            <motion.div
               key={blog.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="group bg-card rounded-xl overflow-hidden shadow-card border border-border hover:shadow-elevated transition-all duration-300 cursor-pointer"
             >
-              <div className="h-2 bg-accent-gradient" />
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-secondary bg-secondary/10 px-2.5 py-1 rounded-full">
-                    {blog.category}
-                  </span>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Clock className="w-3 h-3" />
-                    {blog.readTime}
-                  </span>
+              <Link
+                to={`/blog/${blog.slug}`}
+                className="group block bg-card rounded-xl overflow-hidden shadow-card border border-border hover:shadow-elevated transition-all duration-300"
+              >
+                <div className="h-2 bg-accent-gradient" />
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-secondary bg-secondary/10 px-2.5 py-1 rounded-full">
+                      {blog.category}
+                    </span>
+                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <Clock className="w-3 h-3" />
+                      {blog.readTime}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-foreground mb-2 group-hover:text-secondary transition-colors leading-snug">
+                    {blog.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                    {blog.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">{blog.date}</span>
+                    <span className="flex items-center gap-1 text-sm font-medium text-secondary group-hover:gap-2 transition-all">
+                      Read More <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </div>
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground mb-2 group-hover:text-secondary transition-colors leading-snug">
-                  {blog.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  {blog.excerpt}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">{blog.date}</span>
-                  <span className="flex items-center gap-1 text-sm font-medium text-secondary group-hover:gap-2 transition-all">
-                    Read More <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </div>
-            </motion.article>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

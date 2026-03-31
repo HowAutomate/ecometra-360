@@ -1,5 +1,4 @@
-import { Phone, Mail } from "lucide-react";
-import { SiInstagram, SiLinkedin, SiX } from "@icons-pack/react-simple-icons";
+import { Phone, Mail, Globe, Briefcase, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   return (

@@ -14,11 +14,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(174_72%_46%_/_0.15),_transparent_60%)]" />
       <div className="container relative z-10 py-20 lg:py-32">
         <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-secondary/20 text-secondary mb-6">
               360° Digital Growth Partner
             </span>
@@ -30,8 +26,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6"
           >
-            We Build Brands That{" "}
-            <span className="text-gradient">Dominate</span> Online
+            We Build Brands That <span className="text-gradient">Dominate</span> Online
           </motion.h1>
 
           <motion.p
@@ -40,8 +35,8 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-primary-foreground/70 max-w-xl mb-10"
           >
-            From content creation to marketplace listings, paid ads to SEO — we deliver
-            end-to-end digital marketing that drives real revenue.
+            From content creation to marketplace listings, paid ads to SEO — we deliver end-to-end digital marketing
+            that drives real revenue.
           </motion.p>
 
           <motion.div
@@ -50,12 +45,21 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap gap-4 mb-16"
           >
-            <Button asChild size="lg" className="bg-accent-gradient text-accent-foreground hover:opacity-90 text-base px-8">
+            <Button
+              asChild
+              size="lg"
+              className="bg-accent-gradient text-accent-foreground hover:opacity-90 text-base px-8"
+            >
               <a href="#contact">
                 Start Your Growth <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground font-semibold hover:bg-primary-foreground hover:text-primary text-base px-8">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-primary-foreground/20 text-black hover:bg-primary-foreground/10 text-base px-8"
+            >
               <a href="#services">Explore Services</a>
             </Button>
           </motion.div>

@@ -1,13 +1,14 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", hash: "#home" },
+  { label: "Services", hash: "#services" },
+  { label: "About", hash: "#about" },
+  { label: "Blog", hash: "#blog" },
+  { label: "Contact", hash: "#contact" },
 ];
 
 const Navbar = () => {

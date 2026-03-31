@@ -13,7 +13,7 @@ const Footer = () => {
               Your 360° digital growth partner. We build brands that dominate online — from content to conversions.
             </p>
             <div className="flex gap-3 mt-6">
-              {[Instagram, Linkedin, Twitter].map((Icon, i) => (
+              {[Globe, Briefcase, MessageCircle].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"

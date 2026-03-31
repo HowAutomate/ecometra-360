@@ -55,7 +55,7 @@ const HeroSection = () => {
                 Start Your Growth <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-primary-foreground/60 text-primary-foreground font-semibold hover:bg-primary-foreground/20 text-base px-8">
+            <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground font-semibold hover:bg-primary-foreground hover:text-primary text-base px-8">
               <a href="#services">Explore Services</a>
             </Button>
           </motion.div>

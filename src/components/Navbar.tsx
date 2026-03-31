@@ -13,19 +13,22 @@ const navLinks = [
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+  const getHref = (hash: string) => isHome ? hash : `/${hash}`;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
       <div className="container flex items-center justify-between h-16">
-        <a href="#home" className="font-display text-xl font-bold text-primary tracking-tight">
+        <a href={getHref("#home")} className="font-display text-xl font-bold text-primary tracking-tight">
           ecometra<span className="text-secondary">360</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link.href}
-              href={link.href}
+              key={link.hash}
+              href={getHref(link.hash)}
               className="text-sm font-semibold text-foreground hover:text-secondary transition-colors"
             >
               {link.label}
@@ -39,7 +42,7 @@ const Navbar = () => {
             +91 7011721455
           </a>
           <Button asChild className="bg-accent-gradient text-accent-foreground hover:opacity-90">
-            <a href="#contact">Get a Quote</a>
+            <a href={getHref("#contact")}>Get a Quote</a>
           </Button>
         </div>
 
@@ -52,8 +55,8 @@ const Navbar = () => {
         <div className="md:hidden bg-card border-b border-border px-6 pb-6 space-y-4">
           {navLinks.map((link) => (
             <a
-              key={link.href}
-              href={link.href}
+              key={link.hash}
+              href={getHref(link.hash)}
               className="block text-sm font-medium text-muted-foreground hover:text-foreground"
               onClick={() => setMobileOpen(false)}
             >
@@ -65,7 +68,7 @@ const Navbar = () => {
             +91 7011721455
           </a>
           <Button asChild className="w-full bg-accent-gradient text-accent-foreground">
-            <a href="#contact">Get a Quote</a>
+            <a href={getHref("#contact")}>Get a Quote</a>
           </Button>
         </div>
       )}

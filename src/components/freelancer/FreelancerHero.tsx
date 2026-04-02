@@ -34,7 +34,7 @@ const FreelancerHero = () => {
                 size="lg"
                 variant="outline"
                 asChild
-                className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
+                className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
               >
                 <a href="#roles">View Roles</a>
               </Button>

@@ -56,8 +56,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/40">
-          © {new Date().getFullYear()} Ecometra360. All rights reserved.
+        <div className="border-t border-primary-foreground/10 pt-8 space-y-4 text-center text-sm text-primary-foreground/40">
+          <p className="max-w-2xl mx-auto leading-relaxed">
+            We collaborate with a curated network of professionals to deliver consistent and high-quality results across every project.
+          </p>
+          <p>© {new Date().getFullYear()} Ecometra360. All rights reserved.</p>
         </div>
       </div>
     </footer>

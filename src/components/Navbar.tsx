@@ -48,7 +48,13 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <div className="flex items-center gap-2 text-sm font-medium">
+          {mode === "client" && (
+            <a href="tel:+917011721455" className="flex items-center gap-1.5 text-sm font-medium text-secondary">
+              <Phone className="w-4 h-4" />
+              +91 7011721455
+            </a>
+          )}
+          <div className="flex items-center gap-2 text-sm font-medium min-w-[180px] justify-center">
             <span className={mode === "client" ? "text-secondary" : "text-muted-foreground"}>Client</span>
             <Switch
               checked={mode === "freelancer"}
@@ -56,18 +62,11 @@ const Navbar = () => {
             />
             <span className={mode === "freelancer" ? "text-secondary" : "text-muted-foreground"}>Freelancer</span>
           </div>
-          {mode === "client" && (
-            <>
-              <a href="tel:+917011721455" className="flex items-center gap-1.5 text-sm font-medium text-secondary">
-                <Phone className="w-4 h-4" />
-                +91 7011721455
-              </a>
-              <Button asChild className="bg-accent-gradient text-accent-foreground hover:opacity-90">
-                <a href={getHref("#contact")}>Get a Quote</a>
-              </Button>
-            </>
-          )}
-          {mode === "freelancer" && (
+          {mode === "client" ? (
+            <Button asChild className="bg-accent-gradient text-accent-foreground hover:opacity-90">
+              <a href={getHref("#contact")}>Get a Quote</a>
+            </Button>
+          ) : (
             <Button asChild className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
               <a href={getHref("#apply")}>Apply Now</a>
             </Button>

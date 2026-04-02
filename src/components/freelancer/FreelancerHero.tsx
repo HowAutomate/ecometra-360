@@ -4,7 +4,7 @@ import heroImg from "@/assets/freelancer-hero.jpg";
 
 const FreelancerHero = () => {
   return (
-    <section className="relative pt-28 pb-20 bg-hero overflow-hidden">
+    <section id="home" className="relative pt-28 pb-20 bg-hero overflow-hidden">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div

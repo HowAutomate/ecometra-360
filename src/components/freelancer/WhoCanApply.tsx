@@ -22,6 +22,8 @@ const roles = [
 ];
 
 const WhoCanApply = () => {
+  const [selected, setSelected] = useState<typeof roles[0] | null>(null);
+
   return (
     <section id="roles" className="py-20 bg-muted/50">
       <div className="container">

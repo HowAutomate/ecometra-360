@@ -70,6 +70,8 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const [selected, setSelected] = useState<typeof services[0] | null>(null);
+
   return (
     <section id="services" className="py-24 bg-background">
       <div className="container">

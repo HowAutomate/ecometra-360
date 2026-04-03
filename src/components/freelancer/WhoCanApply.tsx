@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { Crosshair, Store, Paintbrush, Clapperboard, MonitorSmartphone, ClipboardList, Camera, SearchCheck, Bot } from "lucide-react";
+import { useState } from "react";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const roles = [
   { icon: Crosshair, title: "Performance Marketers", desc: "Meta / Google Ads specialists driving ROAS", detail: "Run paid campaigns on Meta, Google & programmatic platforms. Optimize ad spend, A/B test creatives, and deliver measurable ROAS for e-commerce brands." },
@@ -20,6 +22,8 @@ const roles = [
 ];
 
 const WhoCanApply = () => {
+  const [selected, setSelected] = useState<typeof roles[0] | null>(null);
+
   return (
     <section id="roles" className="py-20 bg-muted/50">
       <div className="container">
@@ -35,32 +39,34 @@ const WhoCanApply = () => {
           </h2>
         </motion.div>
 
-        <TooltipProvider delayDuration={200}>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {roles.map((role, i) => (
-              <Tooltip key={role.title}>
-                <TooltipTrigger asChild>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
-                    className="bg-card rounded-xl p-6 shadow-card border border-border hover:shadow-elevated hover:border-secondary/40 transition-all cursor-pointer"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
-                      <role.icon className="w-5 h-5 text-secondary" />
-                    </div>
-                    <h3 className="font-display font-semibold text-foreground text-lg mb-1">{role.title}</h3>
-                    <p className="text-sm text-muted-foreground">{role.desc}</p>
-                  </motion.div>
-                </TooltipTrigger>
-                <TooltipContent side="top" className="max-w-xs text-sm p-3">
-                  {role.detail}
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </div>
-        </TooltipProvider>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {roles.map((role, i) => (
+            <motion.div
+              key={role.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              onClick={() => setSelected(role)}
+              className="bg-card rounded-xl p-6 shadow-card border border-border hover:shadow-elevated hover:border-secondary/40 transition-all cursor-pointer"
+            >
+              <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
+                <role.icon className="w-5 h-5 text-secondary" />
+              </div>
+              <h3 className="font-display font-semibold text-foreground text-lg mb-1">{role.title}</h3>
+              <p className="text-sm text-muted-foreground">{role.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{selected?.title}</DialogTitle>
+              <DialogDescription>{selected?.detail}</DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );

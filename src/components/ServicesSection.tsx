@@ -3,12 +3,14 @@ import {
   Pen, Megaphone, SearchCheck, Store, BarChart3, Mail,
   Camera, MonitorSmartphone, Bot
 } from "lucide-react";
+import { useState } from "react";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const services = [
   {
@@ -68,6 +70,8 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const [selected, setSelected] = useState<typeof services[0] | null>(null);
+
   return (
     <section id="services" className="py-24 bg-background">
       <div className="container">
@@ -86,32 +90,34 @@ const ServicesSection = () => {
           </p>
         </motion.div>
 
-        <TooltipProvider delayDuration={200}>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => (
-              <Tooltip key={service.title}>
-                <TooltipTrigger asChild>
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
-                    className="group bg-card rounded-xl p-6 shadow-card hover:shadow-elevated transition-all duration-300 border border-border hover:border-secondary/40 cursor-pointer"
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-accent-gradient group-hover:text-accent-foreground transition-colors">
-                      <service.icon className="w-6 h-6 text-secondary group-hover:text-accent-foreground" />
-                    </div>
-                    <h3 className="font-display text-lg font-semibold text-foreground mb-2">{service.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
-                  </motion.div>
-                </TooltipTrigger>
-                <TooltipContent side="top" className="max-w-xs text-sm p-3">
-                  {service.detail}
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </div>
-        </TooltipProvider>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, i) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              onClick={() => setSelected(service)}
+              className="group bg-card rounded-xl p-6 shadow-card hover:shadow-elevated transition-all duration-300 border border-border hover:border-secondary/40 cursor-pointer"
+            >
+              <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-accent-gradient group-hover:text-accent-foreground transition-colors">
+                <service.icon className="w-6 h-6 text-secondary group-hover:text-accent-foreground" />
+              </div>
+              <h3 className="font-display text-lg font-semibold text-foreground mb-2">{service.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{selected?.title}</DialogTitle>
+              <DialogDescription>{selected?.detail}</DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );

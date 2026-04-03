@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { Crosshair, Store, Paintbrush, Clapperboard, MonitorSmartphone, ClipboardList, Camera, SearchCheck, Bot } from "lucide-react";
+import { useState } from "react";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const roles = [
   { icon: Crosshair, title: "Performance Marketers", desc: "Meta / Google Ads specialists driving ROAS", detail: "Run paid campaigns on Meta, Google & programmatic platforms. Optimize ad spend, A/B test creatives, and deliver measurable ROAS for e-commerce brands." },

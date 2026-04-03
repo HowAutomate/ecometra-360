@@ -3,12 +3,14 @@ import {
   Pen, Megaphone, SearchCheck, Store, BarChart3, Mail,
   Camera, MonitorSmartphone, Bot
 } from "lucide-react";
+import { useState } from "react";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const services = [
   {

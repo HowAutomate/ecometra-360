@@ -14,6 +14,7 @@ import WhatWeLookFor from "@/components/freelancer/WhatWeLookFor";
 import FreelancerForm from "@/components/freelancer/FreelancerForm";
 import FinalCTA from "@/components/freelancer/FinalCTA";
 import StickyMobileCTA from "@/components/freelancer/StickyMobileCTA";
+import FloatingQuoteButton from "@/components/FloatingQuoteButton";
 import Footer from "@/components/Footer";
 import { useMode } from "@/contexts/ModeContext";
 
@@ -28,9 +29,10 @@ const Index = () => {
           <HeroSection />
           <ServicesSection />
           <AboutSection />
+          <ContactSection />
           <TestimonialsSection />
           <BlogSection />
-          <ContactSection />
+          <FloatingQuoteButton />
         </>
       ) : (
         <>

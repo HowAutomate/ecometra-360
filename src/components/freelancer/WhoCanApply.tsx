@@ -1,13 +1,22 @@
 import { motion } from "framer-motion";
-import { Target, ShoppingCart, Palette, Video, Code, ListChecks } from "lucide-react";
+import { Crosshair, Store, Paintbrush, Clapperboard, MonitorSmartphone, ClipboardList, Camera, SearchCheck, Bot } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const roles = [
-  { icon: Target, title: "Performance Marketers", desc: "Meta / Google Ads specialists driving ROAS" },
-  { icon: ShoppingCart, title: "Marketplace Specialists", desc: "Amazon, Flipkart, Myntra, Nykaa experts" },
-  { icon: Palette, title: "Creative Designers", desc: "Ads, banners, A+ content creators" },
-  { icon: Video, title: "Content Creators", desc: "UGC, scripts, reels production" },
-  { icon: Code, title: "Shopify / CRO Experts", desc: "Store optimization & conversion specialists" },
-  { icon: ListChecks, title: "Catalog & Listing Specialists", desc: "Product listing & catalog management" },
+  { icon: Crosshair, title: "Performance Marketers", desc: "Meta / Google Ads specialists driving ROAS", detail: "Run paid campaigns on Meta, Google & programmatic platforms. Optimize ad spend, A/B test creatives, and deliver measurable ROAS for e-commerce brands." },
+  { icon: Store, title: "Marketplace Specialists", desc: "Amazon, Flipkart, Myntra, Nykaa experts", detail: "Manage product listings, pricing strategies, promotions, and advertising on major Indian & global marketplaces to maximize sales velocity." },
+  { icon: Paintbrush, title: "Creative Designers", desc: "Ads, banners, A+ content creators", detail: "Design scroll-stopping ad creatives, social media graphics, A+ / brand store content, and packaging designs that convert browsers into buyers." },
+  { icon: Clapperboard, title: "Content Creators", desc: "UGC, scripts, reels production", detail: "Produce short-form video content — reels, UGC ads, unboxings, and product demos — that drive engagement and sales on social platforms." },
+  { icon: MonitorSmartphone, title: "Shopify / CRO Experts", desc: "Store optimization & conversion specialists", detail: "Build, customize, and optimize Shopify stores. Improve conversion rates through UX audits, landing page design, and checkout flow optimization." },
+  { icon: ClipboardList, title: "Catalog & Listing Specialists", desc: "Product listing & catalog management", detail: "Create and manage accurate, SEO-optimized product catalogs across multiple channels — from data entry to rich media content." },
+  { icon: Camera, title: "Photoshoot Specialists", desc: "Product photography & visual content", detail: "Plan and execute professional product photoshoots — flat-lays, lifestyle shots, model shoots, and 360° imagery for e-commerce listings." },
+  { icon: SearchCheck, title: "SEO Specialists", desc: "On-page, off-page & technical SEO", detail: "Conduct keyword research, technical audits, link building, and content optimization to boost organic rankings and drive sustainable traffic." },
+  { icon: Bot, title: "AI Tools Specialists", desc: "AI-powered marketing & automation", detail: "Leverage AI tools for content generation, ad copy, chatbots, predictive analytics, and workflow automation to scale marketing output efficiently." },
 ];
 
 const WhoCanApply = () => {
@@ -26,22 +35,32 @@ const WhoCanApply = () => {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {roles.map((role, i) => (
-            <motion.div
-              key={role.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-card rounded-xl p-6 shadow-card border border-border hover:shadow-elevated transition-shadow"
-            >
-              <role.icon className="w-8 h-8 text-secondary mb-4" />
-              <h3 className="font-display font-semibold text-foreground text-lg mb-1">{role.title}</h3>
-              <p className="text-sm text-muted-foreground">{role.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+        <TooltipProvider delayDuration={200}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {roles.map((role, i) => (
+              <Tooltip key={role.title}>
+                <TooltipTrigger asChild>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                    className="bg-card rounded-xl p-6 shadow-card border border-border hover:shadow-elevated hover:border-secondary/40 transition-all cursor-pointer"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
+                      <role.icon className="w-5 h-5 text-secondary" />
+                    </div>
+                    <h3 className="font-display font-semibold text-foreground text-lg mb-1">{role.title}</h3>
+                    <p className="text-sm text-muted-foreground">{role.desc}</p>
+                  </motion.div>
+                </TooltipTrigger>
+                <TooltipContent side="top" className="max-w-xs text-sm p-3">
+                  {role.detail}
+                </TooltipContent>
+              </Tooltip>
+            ))}
+          </div>
+        </TooltipProvider>
       </div>
     </section>
   );

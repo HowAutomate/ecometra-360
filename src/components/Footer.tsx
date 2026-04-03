@@ -1,6 +1,9 @@
 import { Phone, Mail, Globe, Briefcase, MessageCircle } from "lucide-react";
+import { useMode } from "@/contexts/ModeContext";
 
 const Footer = () => {
+  const { setMode } = useMode();
+
   return (
     <footer className="bg-primary text-primary-foreground pt-16 pb-8">
       <div className="container">
@@ -28,7 +31,7 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/60">
-              {["Content Creation", "Social Media Marketing", "SEO & SEM", "Performance Ads", "Marketplace Listings", "Email Marketing"].map((s) => (
+              {["Content Creation", "Social Media Marketing", "SEO & SEM", "Performance Ads", "Marketplace Listings", "Email Marketing", "AI-Powered Services"].map((s) => (
                 <li key={s}><a href="#services" className="hover:text-secondary transition-colors">{s}</a></li>
               ))}
             </ul>
@@ -37,9 +40,24 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/60">
-              {["About Us", "Our Work", "Blog", "Careers", "Contact"].map((s) => (
-                <li key={s}><a href={`#${s.toLowerCase().replace(/\s/g, "")}`} className="hover:text-secondary transition-colors">{s}</a></li>
+              {[
+                { label: "About Us", href: "#about" },
+                { label: "Blog", href: "#blog" },
+                { label: "Contact", href: "#contact" },
+              ].map((s) => (
+                <li key={s.label}><a href={s.href} className="hover:text-secondary transition-colors">{s.label}</a></li>
               ))}
+              <li>
+                <button
+                  onClick={() => {
+                    setMode("freelancer");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="hover:text-secondary transition-colors"
+                >
+                  Work With Us
+                </button>
+              </li>
             </ul>
           </div>
 

@@ -54,13 +54,13 @@ const Navbar = () => {
               +91 7011721455
             </a>
           )}
-          <div className="flex items-center gap-2 text-sm font-medium min-w-[180px] justify-center">
+          <div className="flex items-center gap-2 text-sm font-medium min-w-[200px] justify-center">
             <span className={mode === "client" ? "text-secondary" : "text-muted-foreground"}>Client</span>
             <Switch
               checked={mode === "freelancer"}
               onCheckedChange={(checked) => setMode(checked ? "freelancer" : "client")}
             />
-            <span className={mode === "freelancer" ? "text-secondary" : "text-muted-foreground"}>Freelancer</span>
+            <span className={mode === "freelancer" ? "text-secondary" : "text-muted-foreground"}>Work with us</span>
           </div>
           {mode === "client" ? (
             <Button asChild className="bg-accent-gradient text-accent-foreground hover:opacity-90">
@@ -86,7 +86,7 @@ const Navbar = () => {
               checked={mode === "freelancer"}
               onCheckedChange={(checked) => setMode(checked ? "freelancer" : "client")}
             />
-            <span className={mode === "freelancer" ? "text-secondary" : "text-muted-foreground"}>Freelancer</span>
+            <span className={mode === "freelancer" ? "text-secondary" : "text-muted-foreground"}>Work with us</span>
           </div>
           {navLinks.map((link) => (
             <a

@@ -25,7 +25,7 @@ const clientLinks: { label: string; hash: string; hasDropdown?: boolean }[] = [
   { label: "Contact", hash: "#contact" },
 ];
 
-const freelancerLinks = [
+const freelancerLinks: { label: string; hash: string; hasDropdown?: boolean }[] = [
   { label: "Home", hash: "#home" },
   { label: "Benefits", hash: "#benefits" },
   { label: "Apply", hash: "#apply" },

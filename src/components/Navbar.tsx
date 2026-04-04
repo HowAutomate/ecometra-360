@@ -17,7 +17,7 @@ const servicesList = [
   { icon: Bot, label: "AI-Powered Services" },
 ];
 
-const clientLinks = [
+const clientLinks: { label: string; hash: string; hasDropdown?: boolean }[] = [
   { label: "Home", hash: "#home" },
   { label: "Services", hash: "#services", hasDropdown: true },
   { label: "About", hash: "#about" },

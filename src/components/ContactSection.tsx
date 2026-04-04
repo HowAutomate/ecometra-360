@@ -3,17 +3,37 @@ import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
+const serviceOptions = [
+  "Content Creation",
+  "Social Media Marketing",
+  "SEO & SEM",
+  "Marketplace Listings",
+  "Performance Ads",
+  "Email & WhatsApp Marketing",
+  "Photo & Video Production",
+  "Website & Landing Pages",
+  "AI-Powered Services",
+  "Other",
+];
+
 const ContactSection = () => {
   const { toast } = useToast();
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({ title: "Message Sent!", description: "We'll get back to you within 24 hours." });
-    setForm({ name: "", email: "", phone: "", message: "" });
+    setForm({ name: "", email: "", phone: "", service: "", message: "" });
   };
 
   return (
@@ -96,6 +116,19 @@ const ContactSection = () => {
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
               />
+              <Select
+                value={form.service}
+                onValueChange={(value) => setForm({ ...form, service: value })}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a Service" />
+                </SelectTrigger>
+                <SelectContent>
+                  {serviceOptions.map((s) => (
+                    <SelectItem key={s} value={s}>{s}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <Textarea
                 placeholder="Tell us about your project..."
                 rows={4}

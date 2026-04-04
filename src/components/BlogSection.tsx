@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 const blogs = [
   {
@@ -54,6 +55,14 @@ const blogs = [
 ];
 
 const BlogSection = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (dir: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const amount = 380;
+    scrollRef.current.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+  };
+
   return (
     <section id="blog" className="py-24 bg-background">
       <div className="container">
@@ -61,18 +70,38 @@ const BlogSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="flex items-end justify-between mb-12"
         >
-          <span className="text-sm font-semibold uppercase tracking-wider text-secondary">Insights</span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
-            Latest from Our Blog
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Actionable strategies, case studies, and industry trends from our marketing experts.
-          </p>
+          <div className="max-w-2xl">
+            <span className="text-sm font-semibold uppercase tracking-wider text-secondary">Insights</span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
+              Latest from Our Blog
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Actionable strategies, case studies, and industry trends from our marketing experts.
+            </p>
+          </div>
+          <div className="hidden sm:flex items-center gap-2">
+            <button
+              onClick={() => scroll("left")}
+              className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center hover:bg-secondary/10 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5 text-foreground" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center hover:bg-secondary/10 transition-colors"
+            >
+              <ChevronRight className="w-5 h-5 text-foreground" />
+            </button>
+          </div>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {blogs.map((blog, i) => (
             <motion.div
               key={blog.title}
@@ -80,10 +109,11 @@ const BlogSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
+              className="min-w-[320px] sm:min-w-[360px] snap-start"
             >
               <Link
                 to={`/blog/${blog.slug}`}
-                className="group block bg-card rounded-xl overflow-hidden shadow-card border border-border hover:shadow-elevated transition-all duration-300"
+                className="group block bg-card rounded-xl overflow-hidden shadow-card border border-border hover:shadow-elevated transition-all duration-300 h-full"
               >
                 <div className="h-2 bg-accent-gradient" />
                 <div className="p-6">

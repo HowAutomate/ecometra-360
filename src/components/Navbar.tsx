@@ -1,19 +1,31 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Pen, Megaphone, SearchCheck, Store, BarChart3, Mail, Camera, MonitorSmartphone, Bot, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { useMode } from "@/contexts/ModeContext";
 
-const clientLinks = [
+const servicesList = [
+  { icon: Pen, label: "Content Creation" },
+  { icon: Megaphone, label: "Social Media Marketing" },
+  { icon: SearchCheck, label: "SEO & SEM" },
+  { icon: Store, label: "Marketplace Listings" },
+  { icon: BarChart3, label: "Performance Ads" },
+  { icon: Mail, label: "Email & WhatsApp Marketing" },
+  { icon: Camera, label: "Photo & Video Production" },
+  { icon: MonitorSmartphone, label: "Website & Landing Pages" },
+  { icon: Bot, label: "AI-Powered Services" },
+];
+
+const clientLinks: { label: string; hash: string; hasDropdown?: boolean }[] = [
   { label: "Home", hash: "#home" },
-  { label: "Services", hash: "#services" },
+  { label: "Services", hash: "#services", hasDropdown: true },
   { label: "About", hash: "#about" },
   { label: "Blog", hash: "#blog" },
   { label: "Contact", hash: "#contact" },
 ];
 
-const freelancerLinks = [
+const freelancerLinks: { label: string; hash: string; hasDropdown?: boolean }[] = [
   { label: "Home", hash: "#home" },
   { label: "Benefits", hash: "#benefits" },
   { label: "Apply", hash: "#apply" },
@@ -21,12 +33,23 @@ const freelancerLinks = [
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { mode, setMode } = useMode();
   const location = useLocation();
   const isHome = location.pathname === "/";
   const getHref = (hash: string) => (isHome ? hash : `/${hash}`);
 
   const navLinks = mode === "client" ? clientLinks : freelancerLinks;
+
+  const handleMouseEnter = () => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeout.current = setTimeout(() => setServicesOpen(false), 200);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
@@ -36,15 +59,47 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.hash}
-              href={getHref(link.hash)}
-              className="text-sm font-semibold text-foreground hover:text-secondary transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.hasDropdown && mode === "client" ? (
+              <div
+                key={link.hash}
+                className="relative"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <a
+                  href={getHref(link.hash)}
+                  className="flex items-center gap-1 text-sm font-semibold text-foreground hover:text-secondary transition-colors"
+                >
+                  {link.label}
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </a>
+                {servicesOpen && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-card border border-border rounded-xl shadow-elevated p-3 space-y-1 z-50">
+                    {servicesList.map((s) => (
+                      <a
+                        key={s.label}
+                        href={getHref("#services")}
+                        onClick={() => setServicesOpen(false)}
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/10 transition-colors"
+                      >
+                        <s.icon className="w-4 h-4 text-secondary" />
+                        {s.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <a
+                key={link.hash}
+                href={getHref(link.hash)}
+                className="text-sm font-semibold text-foreground hover:text-secondary transition-colors"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </div>
 
         <div className="hidden md:flex items-center gap-4">

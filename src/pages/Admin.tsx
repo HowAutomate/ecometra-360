@@ -230,13 +230,16 @@ const Admin = () => {
           ))}
         </div>
 
-        <Tabs defaultValue="quotes">
+        <Tabs defaultValue="all">
           <TabsList className="mb-4">
+            <TabsTrigger value="all">All ({submissions.length})</TabsTrigger>
             <TabsTrigger value="quotes">Quote Requests ({quotes.length})</TabsTrigger>
             <TabsTrigger value="freelancers">Freelancer Apps ({freelancers.length})</TabsTrigger>
             <TabsTrigger value="custom">Custom Work ({custom.length})</TabsTrigger>
-            <TabsTrigger value="all">All ({submissions.length})</TabsTrigger>
           </TabsList>
+          <TabsContent value="all">
+            <div className="grid md:grid-cols-2 gap-4">{submissions.length ? submissions.map(renderCard) : <p className="text-muted-foreground col-span-2 text-center py-10">No submissions yet.</p>}</div>
+          </TabsContent>
           <TabsContent value="quotes">
             <div className="grid md:grid-cols-2 gap-4">{quotes.length ? quotes.map(renderCard) : <p className="text-muted-foreground col-span-2 text-center py-10">No quote requests yet.</p>}</div>
           </TabsContent>
@@ -245,9 +248,6 @@ const Admin = () => {
           </TabsContent>
           <TabsContent value="custom">
             <div className="grid md:grid-cols-2 gap-4">{custom.length ? custom.map(renderCard) : <p className="text-muted-foreground col-span-2 text-center py-10">No custom work yet.</p>}</div>
-          </TabsContent>
-          <TabsContent value="all">
-            <div className="grid md:grid-cols-2 gap-4">{submissions.length ? submissions.map(renderCard) : <p className="text-muted-foreground col-span-2 text-center py-10">No submissions yet.</p>}</div>
           </TabsContent>
         </Tabs>
       </div>

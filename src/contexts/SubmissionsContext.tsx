@@ -73,7 +73,7 @@ export const SubmissionsProvider = ({ children }: { children: ReactNode }) => {
 
   const updateSubmission = (id: string, updates: Partial<Submission>) => {
     setSubmissions((prev) =>
-      prev.map((s) => (s.id === id ? { ...s, ...updates } : s))
+      prev.map((s) => (s.id === id ? ({ ...s, ...updates } as Submission) : s))
     );
   };
 

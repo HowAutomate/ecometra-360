@@ -79,6 +79,9 @@ const Footer = () => {
             We collaborate with a curated network of professionals to deliver consistent and high-quality results across every project.
           </p>
           <p>© {new Date().getFullYear()} Ecometra360. All rights reserved.</p>
+          <a href="/admin" className="inline-block text-xs text-primary-foreground/20 hover:text-primary-foreground/40 transition-colors mt-2">
+            Admin
+          </a>
         </div>
       </div>
     </footer>

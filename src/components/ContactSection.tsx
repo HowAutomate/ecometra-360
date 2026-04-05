@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useSubmissions } from "@/contexts/SubmissionsContext";
 
 const serviceOptions = [
   "Content Creation",
@@ -28,10 +29,23 @@ const serviceOptions = [
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const { addSubmission } = useSubmissions();
   const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    addSubmission({
+      id: crypto.randomUUID(),
+      type: "quote",
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      service: form.service,
+      message: form.message,
+      status: "new",
+      assignedTo: "",
+      createdAt: new Date().toISOString(),
+    });
     toast({ title: "Message Sent!", description: "We'll get back to you within 24 hours." });
     setForm({ name: "", email: "", phone: "", service: "", message: "" });
   };

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useSubmissions } from "@/contexts/SubmissionsContext";
 import {
   Select,
   SelectContent,
@@ -26,6 +27,7 @@ const experienceOptions = ["0–1", "1–3", "3–5", "5+"];
 
 const FreelancerForm = () => {
   const { toast } = useToast();
+  const { addSubmission } = useSubmissions();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -47,6 +49,21 @@ const FreelancerForm = () => {
       toast({ title: "Please select your experience level", variant: "destructive" });
       return;
     }
+    addSubmission({
+      id: crypto.randomUUID(),
+      type: "freelancer",
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      expertise: form.expertise,
+      experience: form.experience,
+      portfolio: form.portfolio,
+      tools: form.tools,
+      intro: form.intro,
+      status: "new",
+      assignedTo: "",
+      createdAt: new Date().toISOString(),
+    });
     toast({
       title: "Application Submitted! 🎉",
       description: "Thanks for applying. We'll review and get back to you.",

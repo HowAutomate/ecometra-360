@@ -96,6 +96,12 @@ const Admin = () => {
     );
   }
 
+  const sourceLabel: Record<string, { text: string; class: string }> = {
+    quote: { text: "Quote Request", class: "bg-blue-100 text-blue-700 border-blue-300" },
+    freelancer: { text: "Freelancer App", class: "bg-green-100 text-green-700 border-green-300" },
+    custom: { text: "Custom Work", class: "bg-purple-100 text-purple-700 border-purple-300" },
+  };
+
   const renderCard = (sub: Submission) => (
     <div key={sub.id} className="bg-card rounded-lg border border-border p-5 space-y-3">
       <div className="flex items-start justify-between gap-2">
@@ -105,6 +111,7 @@ const Admin = () => {
               {sub.type === "custom" ? (sub as CustomWork).title : ("name" in sub ? sub.name : "")}
             </h3>
             <Badge variant="outline" className={statusColors[sub.status]}>{sub.status}</Badge>
+            <Badge variant="outline" className={`text-[10px] ${sourceLabel[sub.type].class}`}>{sourceLabel[sub.type].text}</Badge>
             {sub.type === "custom" && (
               <Badge variant="outline" className="text-xs">{(sub as CustomWork).priority}</Badge>
             )}
@@ -158,6 +165,9 @@ const Admin = () => {
           onChange={(e) => updateSubmission(sub.id, { assignedTo: e.target.value })}
           className="h-8 text-xs flex-1"
         />
+        <Button size="sm" variant="outline" className="h-8 text-xs" onClick={() => {/* assign confirmation */}}>
+          Send
+        </Button>
       </div>
     </div>
   );
@@ -220,13 +230,16 @@ const Admin = () => {
           ))}
         </div>
 
-        <Tabs defaultValue="quotes">
+        <Tabs defaultValue="all">
           <TabsList className="mb-4">
+            <TabsTrigger value="all">All ({submissions.length})</TabsTrigger>
             <TabsTrigger value="quotes">Quote Requests ({quotes.length})</TabsTrigger>
             <TabsTrigger value="freelancers">Freelancer Apps ({freelancers.length})</TabsTrigger>
             <TabsTrigger value="custom">Custom Work ({custom.length})</TabsTrigger>
-            <TabsTrigger value="all">All ({submissions.length})</TabsTrigger>
           </TabsList>
+          <TabsContent value="all">
+            <div className="grid md:grid-cols-2 gap-4">{submissions.length ? submissions.map(renderCard) : <p className="text-muted-foreground col-span-2 text-center py-10">No submissions yet.</p>}</div>
+          </TabsContent>
           <TabsContent value="quotes">
             <div className="grid md:grid-cols-2 gap-4">{quotes.length ? quotes.map(renderCard) : <p className="text-muted-foreground col-span-2 text-center py-10">No quote requests yet.</p>}</div>
           </TabsContent>
@@ -235,9 +248,6 @@ const Admin = () => {
           </TabsContent>
           <TabsContent value="custom">
             <div className="grid md:grid-cols-2 gap-4">{custom.length ? custom.map(renderCard) : <p className="text-muted-foreground col-span-2 text-center py-10">No custom work yet.</p>}</div>
-          </TabsContent>
-          <TabsContent value="all">
-            <div className="grid md:grid-cols-2 gap-4">{submissions.length ? submissions.map(renderCard) : <p className="text-muted-foreground col-span-2 text-center py-10">No submissions yet.</p>}</div>
           </TabsContent>
         </Tabs>
       </div>

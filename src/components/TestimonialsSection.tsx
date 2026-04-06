@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import apnaDentalLogo from "@/assets/apna-dental-logo.jpg";
 import anEventsLogo from "@/assets/an-events-logo.jpeg";
+import glowskinLogo from "@/assets/glowskin-logo.png";
+import fitgearLogo from "@/assets/fitgear-logo.png";
+import urbanbiteLogo from "@/assets/urbanbite-logo.png";
 
 const testimonials = [
   {
@@ -22,16 +25,19 @@ const testimonials = [
     name: "Priya Sharma",
     role: "Founder, GlowSkin India",
     text: "Ecometra360 took our D2C brand from ₹2L to ₹28L monthly revenue in just 6 months. Their Meta Ads strategy was a game-changer.",
+    logo: glowskinLogo,
   },
   {
     name: "Rajesh Gupta",
     role: "CEO, FitGear Pro",
     text: "Our Amazon sales grew 4x after their listing optimization. The A+ content and keyword strategy they built is phenomenal.",
+    logo: fitgearLogo,
   },
   {
     name: "Ananya Verma",
     role: "Marketing Head, UrbanBite",
     text: "Best agency we've worked with. Transparent reporting, creative content, and a team that genuinely cares about results.",
+    logo: urbanbiteLogo,
   },
 ];
 
@@ -61,11 +67,9 @@ const TestimonialsSection = () => {
               transition={{ delay: i * 0.1 }}
               className="bg-primary-foreground/5 backdrop-blur border border-primary-foreground/10 rounded-xl p-6 flex flex-col"
             >
-              {t.logo && (
-                <div className="w-16 h-16 rounded-full overflow-hidden bg-white flex items-center justify-center mb-4 mx-auto border-2 border-primary-foreground/10">
-                  <img src={t.logo} alt={t.name} className="w-full h-full object-cover" />
-                </div>
-              )}
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-white flex items-center justify-center mb-4 mx-auto border-2 border-primary-foreground/10">
+                <img src={t.logo} alt={t.name} className="w-full h-full object-cover" loading="lazy" />
+              </div>
               <div className="flex gap-1 mb-3 justify-center">
                 {[...Array(5)].map((_, j) => (
                   <Star key={j} className="w-4 h-4 fill-accent text-accent" />

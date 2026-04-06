@@ -11,11 +11,22 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
+import serviceContentCreation from "@/assets/service-content-creation.jpg";
+import serviceSocialMedia from "@/assets/service-social-media.jpg";
+import serviceSeoSem from "@/assets/service-seo-sem.jpg";
+import serviceMarketplace from "@/assets/service-marketplace.jpg";
+import servicePerformanceAds from "@/assets/service-performance-ads.jpg";
+import serviceEmailWhatsapp from "@/assets/service-email-whatsapp.jpg";
+import servicePhotoVideo from "@/assets/service-photo-video.jpg";
+import serviceWebsite from "@/assets/service-website.jpg";
+import serviceAi from "@/assets/service-ai.jpg";
+
 const services = [
   {
     icon: Pen,
     title: "Content Creation",
     category: "CREATIVE & CONTENT",
+    image: serviceContentCreation,
     desc: "Scroll-stopping copy, graphics, reels, and videos that tell your brand story and convert audiences into customers.",
     detail: "We handle everything from ideation to execution — social media posts, blog articles, ad copy, product descriptions, UGC scripts, and video production tailored to your brand voice.",
     stats: [
@@ -35,6 +46,7 @@ const services = [
     icon: Megaphone,
     title: "Social Media Marketing",
     category: "GROWTH & ENGAGEMENT",
+    image: serviceSocialMedia,
     desc: "Strategic management of Instagram, Facebook, LinkedIn & more — grow followers, engagement, and brand loyalty organically.",
     detail: "Full-service social management including content calendars, community management, influencer collaborations, and monthly analytics reports to track growth.",
     stats: [
@@ -54,6 +66,7 @@ const services = [
     icon: SearchCheck,
     title: "SEO & SEM",
     category: "SEARCH & VISIBILITY",
+    image: serviceSeoSem,
     desc: "Data-driven search engine optimization and paid search campaigns that put you on page one and keep you there.",
     detail: "Technical SEO audits, keyword research, on-page optimization, link building, and Google Ads management with transparent ROI reporting.",
     stats: [
@@ -73,6 +86,7 @@ const services = [
     icon: Store,
     title: "Marketplace Listings",
     category: "E-COMMERCE",
+    image: serviceMarketplace,
     desc: "Optimized product listings on Amazon, Flipkart, Meesho & more — A+ content, keywords, and catalogue management.",
     detail: "End-to-end marketplace management: listing creation, A+ / brand store design, keyword optimization, review management, and advertising on all major platforms.",
     stats: [
@@ -92,6 +106,7 @@ const services = [
     icon: BarChart3,
     title: "Performance Ads",
     category: "PAID MEDIA",
+    image: servicePerformanceAds,
     desc: "High-ROI Google Ads, Meta Ads, and programmatic campaigns crafted around your KPIs with transparent reporting.",
     detail: "We plan, launch, and optimize paid campaigns across Google, Meta, YouTube, and programmatic networks — with weekly performance dashboards and ROAS tracking.",
     stats: [
@@ -111,6 +126,7 @@ const services = [
     icon: Mail,
     title: "Email & WhatsApp Marketing",
     category: "RETENTION & AUTOMATION",
+    image: serviceEmailWhatsapp,
     desc: "Automated drip campaigns, newsletters, and WhatsApp broadcasts that nurture leads and boost repeat purchases.",
     detail: "Setup and management of email automation flows, segmented campaigns, WhatsApp Business API integration, and performance tracking for maximum retention.",
     stats: [
@@ -130,6 +146,7 @@ const services = [
     icon: Camera,
     title: "Photo & Video Production",
     category: "VISUAL MEDIA",
+    image: servicePhotoVideo,
     desc: "Professional product shoots, brand films, testimonials, and UGC-style content — studio or on-location.",
     detail: "From concept to final edit — product photography, lifestyle shoots, 360° spins, brand videos, testimonial shoots, and UGC-style content for ads and social.",
     stats: [
@@ -149,6 +166,7 @@ const services = [
     icon: MonitorSmartphone,
     title: "Website & Landing Pages",
     category: "WEB DEVELOPMENT",
+    image: serviceWebsite,
     desc: "Conversion-focused websites and landing pages built with modern design, fast load times, and flawless UX.",
     detail: "Custom Shopify stores, WordPress sites, and high-converting landing pages with mobile-first design, speed optimization, and CRO best practices built in.",
     stats: [
@@ -168,6 +186,7 @@ const services = [
     icon: Bot,
     title: "AI-Powered Services",
     category: "AI & AUTOMATION",
+    image: serviceAi,
     desc: "Leverage AI for smarter marketing — from automated content to predictive analytics and intelligent chatbots.",
     detail: "We integrate AI tools for content generation, ad copy optimization, customer chatbots, product recommendations, and predictive analytics to scale your marketing efficiently.",
     stats: [
@@ -230,10 +249,17 @@ const ServicesSection = () => {
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0">
             {selected && (
               <>
-                {/* Header gradient banner */}
-                <div className={`relative h-40 sm:h-48 bg-gradient-to-r ${selected.gradient} rounded-t-lg flex items-end p-6`}>
-                  <div className="absolute inset-0 bg-black/20 rounded-t-lg" />
-                  <div className="relative z-10">
+                {/* Header with image */}
+                <div className="relative rounded-t-lg overflow-hidden">
+                  <img
+                    src={selected.image}
+                    alt={selected.title}
+                    className="w-full h-48 sm:h-56 object-cover"
+                    loading="lazy"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${selected.gradient} opacity-70`} />
+                  <div className="absolute inset-0 bg-black/20" />
+                  <div className="absolute bottom-0 left-0 p-6 z-10">
                     <span className="text-xs font-semibold uppercase tracking-wider text-white/80 bg-white/20 px-3 py-1 rounded-full">
                       {selected.category}
                     </span>

@@ -1,4 +1,4 @@
-import { Phone, Mail, Globe, Briefcase, MessageCircle } from "lucide-react";
+import { Phone, Mail, Globe, Briefcase, MessageCircle, Instagram } from "lucide-react";
 import { useMode } from "@/contexts/ModeContext";
 
 const Footer = () => {

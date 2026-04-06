@@ -16,6 +16,14 @@ const Footer = () => {
               Your 360° digital growth partner. We build brands that dominate online — from content to conversions.
             </p>
             <div className="flex gap-3 mt-6">
+              <a
+                href="https://www.instagram.com/ecometra360"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary/20 transition-colors"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
               {[Globe, Briefcase, MessageCircle].map((Icon, i) => (
                 <a
                   key={i}

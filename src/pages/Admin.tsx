@@ -10,8 +10,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Lock, Plus, Trash2, ClipboardList, Users, Briefcase, LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const ADMIN_EMAIL = "payal.pandey@ecometra360.com";
-const ADMIN_PASSWORD = "payalpandey4u";
+const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL ?? "";
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD ?? "";
 
 const statusColors: Record<string, string> = {
   new: "bg-blue-500/10 text-blue-600 border-blue-200",

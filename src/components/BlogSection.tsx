@@ -52,6 +52,38 @@ const blogs = [
     readTime: "9 min read",
     slug: "brand-identity-framework",
   },
+  {
+    title: "Influencer Marketing ROI: How to Measure What Actually Matters",
+    excerpt: "Beyond likes and reach — the real KPIs that prove your influencer campaigns are driving revenue, not just vanity metrics.",
+    category: "Influencer",
+    date: "Apr 02, 2026",
+    readTime: "7 min read",
+    slug: "influencer-marketing-roi",
+  },
+  {
+    title: "Quick Commerce in India: How D2C Brands Are Winning on Blinkit & Zepto",
+    excerpt: "10-minute delivery is reshaping retail. Here's how to list, price, and promote your products to win on India's quick commerce platforms.",
+    category: "Marketplace",
+    date: "Apr 09, 2026",
+    readTime: "6 min read",
+    slug: "quick-commerce-india-d2c",
+  },
+  {
+    title: "Email Marketing Is Not Dead: 7 Flows That Generate 30% of Our Clients' Revenue",
+    excerpt: "From welcome series to win-back campaigns — the automated email flows every D2C brand should set up before spending another rupee on ads.",
+    category: "Email",
+    date: "Apr 16, 2026",
+    readTime: "8 min read",
+    slug: "email-marketing-flows-revenue",
+  },
+  {
+    title: "Generative AI for Marketers: Tools We Actually Use Every Day at Ecometra360",
+    excerpt: "Cut through the AI hype. Here's the real-world stack our content, design, and ads teams use to ship 3x faster without losing quality.",
+    category: "AI & Tools",
+    date: "Apr 23, 2026",
+    readTime: "9 min read",
+    slug: "generative-ai-marketing-tools",
+  },
 ];
 
 const BlogSection = () => {

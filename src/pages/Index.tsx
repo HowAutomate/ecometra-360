@@ -16,6 +16,8 @@ import FinalCTA from "@/components/freelancer/FinalCTA";
 import StickyMobileCTA from "@/components/freelancer/StickyMobileCTA";
 import FloatingQuoteButton from "@/components/FloatingQuoteButton";
 import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
+import ScrollToTop from "@/components/ScrollToTop";
 import { useMode } from "@/contexts/ModeContext";
 
 const Index = () => {
@@ -27,26 +29,27 @@ const Index = () => {
       {mode === "client" ? (
         <>
           <HeroSection />
-          <ServicesSection />
-          <AboutSection />
-          <ContactSection />
-          <TestimonialsSection />
-          <BlogSection />
+          <Reveal><ServicesSection /></Reveal>
+          <Reveal><AboutSection /></Reveal>
+          <Reveal><ContactSection /></Reveal>
+          <Reveal><TestimonialsSection /></Reveal>
+          <Reveal><BlogSection /></Reveal>
           <FloatingQuoteButton />
         </>
       ) : (
         <>
           <FreelancerHero />
-          <FreelancerIntro />
-          <WhoCanApply />
-          <WhyJoinUs />
-          <HowItWorks />
-          <WhatWeLookFor />
-          <FreelancerForm />
-          <FinalCTA />
+          <Reveal><FreelancerIntro /></Reveal>
+          <Reveal><WhoCanApply /></Reveal>
+          <Reveal><WhyJoinUs /></Reveal>
+          <Reveal><HowItWorks /></Reveal>
+          <Reveal><WhatWeLookFor /></Reveal>
+          <Reveal><FreelancerForm /></Reveal>
+          <Reveal><FinalCTA /></Reveal>
           <StickyMobileCTA />
         </>
       )}
+      <ScrollToTop />
       <Footer />
     </div>
   );

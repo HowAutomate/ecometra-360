@@ -34,6 +34,11 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    fetch("https://n8n.srv1198552.hstgr.cloud/webhook-test/5d12d898-38b7-483a-a7a2-39eedaa15b23", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "quote", ...form, submittedAt: new Date().toISOString() }),
+    }).catch((err) => console.error("Webhook error:", err));
     addSubmission({
       id: crypto.randomUUID(),
       type: "quote",

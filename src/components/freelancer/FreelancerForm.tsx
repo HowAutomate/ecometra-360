@@ -49,6 +49,11 @@ const FreelancerForm = () => {
       toast({ title: "Please select your experience level", variant: "destructive" });
       return;
     }
+    fetch("https://n8n.srv1198552.hstgr.cloud/webhook/da7e0d31-06d0-4e57-b85c-b7b0f1a7c6c7", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "freelancer", ...form, submittedAt: new Date().toISOString() }),
+    }).catch((err) => console.error("Webhook error:", err));
     addSubmission({
       id: crypto.randomUUID(),
       type: "freelancer",

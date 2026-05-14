@@ -110,12 +110,12 @@ const Navbar = () => {
             </a>
           )}
           <div className="flex items-center gap-2 text-sm font-medium min-w-[200px] justify-center">
-            <span className={mode === "client" ? "text-secondary" : "text-muted-foreground"}>Client</span>
+            <span className={mode === "client" ? "text-secondary font-semibold" : "text-foreground"}>Client</span>
             <Switch
               checked={mode === "freelancer"}
               onCheckedChange={(checked) => setMode(checked ? "freelancer" : "client")}
             />
-            <span className={mode === "freelancer" ? "text-secondary" : "text-muted-foreground"}>Work with us</span>
+            <span className={mode === "freelancer" ? "text-secondary font-semibold" : "text-foreground"}>Work with us</span>
           </div>
           {mode === "client" ? (
             <Button asChild className="bg-accent-gradient text-accent-foreground hover:opacity-90">
@@ -136,12 +136,12 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="md:hidden bg-card border-b border-border px-6 pb-6 space-y-4">
           <div className="flex items-center gap-2 text-sm font-medium py-2">
-            <span className={mode === "client" ? "text-secondary" : "text-muted-foreground"}>Client</span>
+            <span className={mode === "client" ? "text-secondary font-semibold" : "text-foreground"}>Client</span>
             <Switch
               checked={mode === "freelancer"}
               onCheckedChange={(checked) => setMode(checked ? "freelancer" : "client")}
             />
-            <span className={mode === "freelancer" ? "text-secondary" : "text-muted-foreground"}>Work with us</span>
+            <span className={mode === "freelancer" ? "text-secondary font-semibold" : "text-foreground"}>Work with us</span>
           </div>
           {navLinks.map((link) => (
             <a

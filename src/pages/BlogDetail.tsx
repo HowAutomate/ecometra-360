@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -114,11 +115,86 @@ const blogData: Record<string, { title: string; category: string; date: string; 
   },
 };
 
+  "influencer-marketing-roi": {
+    title: "Measuring Influencer Marketing ROI: A Data-Driven Framework",
+    category: "Influencer Marketing",
+    date: "Jan 30, 2026",
+    readTime: "7 min read",
+    excerpt: "Most brands guess at influencer ROI. Here is a data-driven framework for measuring real returns — from reach to revenue.",
+    content: [
+      "Influencer marketing in India is projected to hit Rs 3,375 crore by 2026 — yet most brands still measure success by follower count and likes.",
+      "Why Vanity Metrics Fail: Reach and impressions do not tell you how many bought, how much revenue was generated, or whether the spend was justified.",
+      "The Correct ROI Formula: Influencer ROI = (Revenue Generated - Campaign Cost) / Campaign Cost x 100. Use tracked UTM links and unique discount codes per influencer.",
+      "Tiering Your Influencer Mix: Micro-influencers (10K-100K) deliver the best engagement-to-cost ratio. For D2C brands, a 70% micro and 30% macro mix typically delivers the best blended ROI.",
+      "Attribution Models: Use multi-touch attribution models and compare CAC from influencer channels on a 30-day and 90-day window.",
+      "At Ecometra360, we build influencer strategies with full attribution tracking built in from day one.",
+    ],
+  },
+  "quick-commerce-india-d2c": {
+    title: "Quick Commerce and D2C in India: What Brands Need to Know in 2026",
+    category: "E-commerce",
+    date: "Jan 22, 2026",
+    readTime: "8 min read",
+    excerpt: "Blinkit, Zepto, Swiggy Instamart — quick commerce is reshaping D2C in India. Here is how brands should adapt their strategy.",
+    content: [
+      "Quick commerce — delivering products in 10-30 minutes — has moved from niche to mainstream in India metro cities. Blinkit, Zepto, Swiggy Instamart, and BigBasket Now collectively process millions of orders daily.",
+      "Why Q-Commerce Changes D2C Strategy: When a customer buys your product on Blinkit, you get no customer data, limited brand visibility, and razor-thin margins after platform fees.",
+      "The Hybrid Approach: Run both channels simultaneously. Q-commerce for trial and repeat purchases. Owned D2C website for hero products, bundles, and high-margin SKUs.",
+      "Listing Optimisation: Use product title with primary keywords, high-quality hero images, competitive pricing, and maintain high availability scores.",
+      "Data Strategy: Include QR codes on packaging linking to your website. Create loyalty programmes that reward customers regardless of purchase channel.",
+      "At Ecometra360, we help D2C brands build integrated strategies that capture q-commerce volume while protecting D2C margins.",
+    ],
+  },
+  "email-marketing-flows-revenue": {
+    title: "Email Marketing Flows That Drive Revenue: A Complete Automation Guide",
+    category: "Email Marketing",
+    date: "Jan 15, 2026",
+    readTime: "9 min read",
+    excerpt: "Email delivers $36 for every $1 spent — but only with the right automated flows. Here are the 6 flows every e-commerce brand needs.",
+    content: [
+      "Email marketing delivers an average ROI of $36 for every $1 spent — higher than any other digital channel.",
+      "Flow 1 — Welcome Series (Days 1, 3, 7): The most important flow you will ever build. Email 1: brand story. Email 2: social proof. Email 3: best-seller showcase and first-purchase offer.",
+      "Flow 2 — Abandoned Cart (1 hour, 24 hours, 72 hours): 70% of e-commerce shopping carts are abandoned. A three-email sequence recovers 5-15% of those orders.",
+      "Flow 3 — Post-Purchase (Day 1, Day 4, Day 14): Order confirmation, usage tips, then review request and cross-sell. Post-purchase flows increase repeat purchase rate by 20-30%.",
+      "Flow 4 — Win-Back (60 days, 90 days): A win-back sequence can reactivate 10-15% of your lapsed customer base.",
+      "Flow 5 — VIP Loyalty: Identify top 10-20% of customers by lifetime value. Send early access, exclusive bundles, and personalised thank-you emails.",
+      "At Ecometra360, we set up and optimise email automation for D2C brands end-to-end. Our clients average 25-40% contribution from email to total revenue within 90 days.",
+    ],
+  },
+  "generative-ai-marketing-tools": {
+    title: "Generative AI Marketing Tools: What Works, What Does Not in 2026",
+    category: "AI Marketing",
+    date: "Jan 8, 2026",
+    readTime: "8 min read",
+    excerpt: "After testing 30+ AI tools with real clients, here is our honest verdict on what actually delivers marketing ROI in 2026.",
+    content: [
+      "After integrating generative AI into workflows for 50+ clients over 18 months, here is our honest assessment of what actually moves the needle.",
+      "What Works — AI Copywriting with human editing: Tools like Claude, ChatGPT, and Gemini genuinely accelerate ad copy and product descriptions. Time savings: 40-60% on copy production.",
+      "What Works — AI Image Generation for Ads: Our performance ads team now uses AI for 30-40% of static ad creative, particularly for testing new angles before a full shoot.",
+      "What Works — AI for Data Analysis: Analysing ad performance, identifying patterns in customer reviews, and summarising competitive intelligence are high-ROI applications.",
+      "What Does Not Work — AI SEO Content at Scale: Google Helpful Content system is increasingly effective at detecting low-quality AI content. Always add expert human editing.",
+      "What Does Not Work — Fully Automated Social Media: AI-generated social content feels generic. Keep a human in the loop for tone, timing, and trend response.",
+      "At Ecometra360, we have integrated AI thoughtfully across content, ads, and analytics workflows — delivering faster turnaround without sacrificing quality.",
+    ],
+  },
+};
+
 const blogSlugs = Object.keys(blogData);
 
 const BlogDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const blog = slug ? blogData[slug] : null;
+  useEffect(() => {
+    if (blog) {
+      document.title = blog.title + " | Ecometra360";
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute("content", blog.content[0]?.slice(0, 160) || "");
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute("content", blog.title);
+    }
+    return () => { document.title = "Ecometra360 — 360° Digital Marketing Agency India"; };
+  }, [blog]);
+
 
   if (!blog) {
     return (

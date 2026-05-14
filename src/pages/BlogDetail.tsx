@@ -181,7 +181,6 @@ const blogData: Record<string, { title: string; category: string; date: string; 
       "Our internal rule at Ecometra360: AI handles the first 70% of any task. The final 30% — judgment, polish, and accountability — stays human. That's the only way to scale quality.",
     ],
   },
-};
 
   "influencer-marketing-roi": {
     title: "Measuring Influencer Marketing ROI: A Data-Driven Framework",
